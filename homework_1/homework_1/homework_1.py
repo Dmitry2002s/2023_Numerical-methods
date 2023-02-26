@@ -1,11 +1,11 @@
-
+# -*- coding: cp1251 -*-
  
 import math
 from typing import Counter
 def f(x):
     return (5*math.sin(2*x)-math.sqrt(1-x))
 
-print("Enter number in range from -15 to -10")
+print("¬ведите number in range from -15 to -10")
 x = int(input()) 
 
 
