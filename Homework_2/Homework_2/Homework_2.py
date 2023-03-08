@@ -25,30 +25,29 @@ def f(List) : #На вход подается цепочка аргументов x_i
     return result 
 choise = 1 
 F = 1 - sympy.exp(-x) + x**2 ## функция на случай дифференцирования 
+
+
+
+print("                 Задача Алгебраического интерполирования\n")
+print(" Номер варианта - 9") 
+print("1 - exp(-x) + x**2")
+print("Введите число значений функции в таблице") 
+m = int(input()) #Число значений в таблицы
+print("Введите левую границу значений функции в таблице ")
+L_border = float(input()) #Левая граница 
+print("Введите правую границу значений функции в таблице")
+R_border = float(input()) #Правая 
+Table = [] 
+Run = L_border
+for i in range(0,m):
+    Table.append(cell(Run,function(Run) ))
+    Run += (R_border - L_border)/(m-1)
+for i in Table : 
+    i.print
+
 while (choise == 1) :
-
-
-    print("                 Задача Алгебраического интерполирования\n")
-    print(" Номер варианта - 9") 
-    print("1 - exp(-x) + x**2")
-    print("Введите число значений функции в таблице") 
-    m = int(input()) #Число значений в таблицы
-    print("Введите левую границу значений функции в таблице ")
-    L_border = float(input()) #Левая граница 
-    print("Введите правую границу значений функции в таблице")
-    R_border = float(input()) #Правая граница 
-
-    Table = [] 
-    Run = L_border  
-
-    for i in range(0,m):
-        Table.append(cell(Run,function(Run) ))
-        Run += (R_border - L_border)/(m-1)
-    for i in Table : 
-        i.print() 
-
     print("Введите точку интерполирования") 
-    x = int(input()) 
+    x = float(input()) 
 
     print("Введите желаемую степень интерполяционного многочлена") 
     n = int(input()) 
@@ -130,5 +129,6 @@ while (choise == 1) :
             print("Некорректно, введите повторно") 
         if (choise == 0):
             break
-        
 
+        
+        #/
