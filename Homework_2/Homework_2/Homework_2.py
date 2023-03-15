@@ -1,5 +1,5 @@
 # -*- coding: cp1251 -*-
-
+print("AAAAAAAAAAAAAAAAAааааааааааааа")
 import math 
 from math import exp
 import sympy 
