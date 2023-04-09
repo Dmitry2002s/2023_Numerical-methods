@@ -34,8 +34,8 @@ m = 101 # int(input("Количество значений функции в таблице\n"))
 p = a 
 for i in range(0,m):
     Table.append( cell( p + (b - a )*i / (m-1), function( p  + (b - a  ) * i / (m-1))) ) #Заполняем функцию равноотстоящими значениями 
-#for i in Table: 
-#        i.print() #Отображаем нашу табличку 
+for i in Table: 
+        i.print() #Отображаем нашу табличку 
 
 #Найдём участки строгой монотонности функции : 
 
@@ -189,12 +189,13 @@ while (choise == 1) :
     VAX = len(ITable)#Коэф окончания заполнения таблицы 
     CAX = 0 
     AAAP = 0 
+
     while (c>1): #Создание таблицы ближайших услов интерполяции по мере удаления 
-            if(Z+p<m):
+            if(Z+p<m and c!= 1):
                 if(Table[Z+p].number>monotony[V].X1 and Table[Z+V].number<monotony[V].X2 ):
                     ITable.append(Table[Z+p]) 
                     c -= 1 
-            if(Z-p>=0):
+            if(Z-p>=0 and c!= 1 ):
                 if(Table[Z-p].number>monotony[V].X1 and Table[Z-p].number<monotony[V].X2 ):
                     ITable.append(Table[Z-p])
                     c -= 1 
@@ -203,23 +204,25 @@ while (choise == 1) :
                     if(Z+p+1<m):
                         if(Table[Z+p+1].number>monotony[V].X1 and Table[Z+p+1].number<monotony[V].X2 ):
                             ITable.append(Table[Z+p+1])
+                             
                 else:
                     if(Z-p-1>=m):
                         if(Table[Z+p-1].number>monotony[V].X1 and Table[Z+p-1].number<monotony[V].X2 ):
                             ITable.append(Table[Z-p-1])
+
                 break
-            p+=1 
+            p+=1
             
-            if(len(ITable) == VAX):
-                VAX = len(ITable) 
-                CAX += 1 
-                if CAX == 2: 
-                    AAAP = 1 
-                    break 
-            else:
-                CAX = 0 
-            if(AAAP==0):
-                break 
+            #if(len(ITable) == VAX):
+            #    VAX = len(ITable) 
+            #    CAX += 1 
+            #    if CAX == 2: 
+            #        AAAP = 1 
+            #        break 
+            #else:
+            #    CAX = 0 
+            #if(AAAP==0):
+            #    break 
 
 
     #print("Отсортированная по возрастанию расстояния от узла интерполяции Таблица узлов, по которым выполняем интерполирование")
@@ -262,10 +265,12 @@ while (choise == 1) :
         B = i.X2 # Правая граница 
         C = 0 #Вычисляемое третье слагаемое 
         x_0= B + (A-B)/2  #т.к. всё задано в отрицательном, то просто возьмём середину отрезка
-        while (abs( B - A ) > 2 * E):
+        kk = 0 
+        while (abs( B - A ) > 2 * E or kk == 0 ):
             C = B-(B-A)*CVA.evalf(subs = {v:B})/(CVA.evalf(subs = {v:B}) - CVA.evalf(subs = {v:A}))
             A = B 
             B = C 
+            kk = 1 
         print("Приближенный корень  -" , C)
         print("Абсолютная величина невязки -", abs(function(C) - x) , "\n") #Метод секущих
     print("Хотите проинтерполировать другую точку ? \n 0 - нет, 1 - да")
