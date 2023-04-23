@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GCD", "GCD\GCD.pyproj", "{3D6126EB-6467-487A-ADE1-09DA2EE355AF}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "НОК", "НОК\НОК.pyproj", "{9AAB4C2B-5811-485E-AD7A-4FE191B35003}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "One one one one", "One one one one\One one one one.pyproj", "{3B231974-46F3-4A34-B983-7DBA881BB85B}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Oranges", "Oranges\Oranges.pyproj", "{31058DB7-FB67-4C0E-9CD9-F8B1361A5F9C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D6126EB-6467-487A-ADE1-09DA2EE355AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D6126EB-6467-487A-ADE1-09DA2EE355AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AAB4C2B-5811-485E-AD7A-4FE191B35003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AAB4C2B-5811-485E-AD7A-4FE191B35003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B231974-46F3-4A34-B983-7DBA881BB85B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B231974-46F3-4A34-B983-7DBA881BB85B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31058DB7-FB67-4C0E-9CD9-F8B1361A5F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31058DB7-FB67-4C0E-9CD9-F8B1361A5F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE41F265-FEC5-4B45-95ED-D0161BAA774D}
+	EndGlobalSection
+EndGlobal
