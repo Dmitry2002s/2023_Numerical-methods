@@ -5,6 +5,21 @@ from sympy import sin, cos ,exp, integrate,sympify
 from sympy.abc import x
 def function(f,y):# Значение функции в точке x:
     return f.evalf(subs = {x : y})
+def MAX_f(f ,a,b): 
+    h = 1/100
+    i = 0
+    result = -10000000
+    while(a+i*h<b):
+        if(function(f,(a+i*h))>result):
+            result = function(f,a+i*h)
+        i+=1 
+    return result 
+def f_diff(f,n):
+    while(n!=0):
+        f = f.diff(x)
+        n-=1 
+    return f 
+    
 def integrate_KF(list_f): 
     for f in list_f :  
             F = integrate(f,x) 
@@ -25,8 +40,8 @@ def SKF_Left_triangle(f,m, a ,b ):
     for j in range(0,m): 
         result += function(f,a+j*h)
     result *= h 
-    print("CКФ Левого треугольника  = ", result , " -  ",abs(result-(function(F,b) - function(F,a))) )
-    
+    print("CКФ Левого треугольника  = ", result , " - абс.погр. - ",abs(result-(function(F,b) - function(F,a))), end = '' )
+    print("   Теор.погр. = ", 1/2*(b-a)*h**1*MAX_f(f_diff(f,1),a,b))
     return result 
 def SKF_Right_triangle(f,m, a ,b ): 
     F = integrate(f,x)
@@ -35,7 +50,8 @@ def SKF_Right_triangle(f,m, a ,b ):
     for j in range(0,m): 
         result += function(f,a+(j+1)*h)
     result *= h 
-    print("CКФ правого треугольника  = ", result , " -  ",abs(result-(function(F,b) - function(F,a))) )
+    print("CКФ правого треугольника  = ", result , " - абс.погр. - ",abs(result-(function(F,b) - function(F,a))) , end = '' )
+    print("   Теор.погр. = ", 1/2*(b-a)*h**1*MAX_f(f_diff(f,1),a,b))
      
     return result 
 def SKF_Middle_triangle(f,m, a ,b ): 
@@ -45,8 +61,8 @@ def SKF_Middle_triangle(f,m, a ,b ):
     for j in range(0,m): 
         result += function(f,a+(j+1/2)*h)
     result *= h 
-    print("CКФ среднего треугольника = ", result , " -  ",abs(result-(function(F,b) - function(F,a))) )
-     
+    print("CКФ среднего треугольника = ", result , " - абс.погр. - ",abs(result-(function(F,b) - function(F,a))) , end = '')
+    print("   Теор.погр. = ", 1/24*(b-a)*h**2*MAX_f(f_diff(f,2),a,b))
     return result 
 def SKF_Trapezoid(f,m, a ,b ): 
     F = integrate(f,x)
@@ -55,8 +71,8 @@ def SKF_Trapezoid(f,m, a ,b ):
     for j in range(0,m): 
         result += (function(f,a+j*h) + function(f,a+(j+1)*h))/2
     result *= h
-    print("CКФ трапеции              = ", result , " -  ",abs(result-(function(F,b) - function(F,a))) )
-     
+    print("CКФ трапеции              = ", result , " - абс.погр. - ",abs(result-(function(F,b) - function(F,a))) , end = '')
+    print("   Теор.погр. = ", 1/12*(b-a)*h**2*MAX_f(f_diff(f,2),a,b))
     return result 
 def SKF_Simpson(f,m, a ,b ): 
     F = integrate(f,x)
@@ -65,8 +81,8 @@ def SKF_Simpson(f,m, a ,b ):
     for j in range(0,m): 
         result += function(f,a+j*h) + 4*function(f,a+(j+1/2)*h) + function(f,a+(j+1)*h)
     result *= h/6
-    print("CКФ симпсона              = ", result , " -  ",abs(result-(function(F,b) - function(F,a))) )
-            
+    print("CКФ симпсона              = ", result , " - абс.погр. - ",abs(result-(function(F,b) - function(F,a))) , end = '')
+    print("   Теор.погр. = ", 1/2880*(b-a)*h**3*MAX_f(f_diff(f,3),a,b))
     return result 
 def integrate_SKF(list_f):
     m = int(input("Введите число промежутков деления "))
@@ -77,7 +93,6 @@ def integrate_SKF(list_f):
         print("Точное значение интеграла для функции \n  ",f," \nНа промежутке [",a,",",b,"]    =   ", function(F,b) - function(F,a))
         print("_______________________________________") 
         for k in list_SKF: 
-
             k(f,m ,a,b) 
         
 
