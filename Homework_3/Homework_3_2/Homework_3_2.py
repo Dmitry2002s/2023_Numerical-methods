@@ -1,20 +1,20 @@
-# -*- coding: cp1251 -*-
+п»ї# -*- coding: cp1251 -*-
 
 import sympy
 
 from sympy.abc import x 
 
 f = sympy.exp(6*x) 
-def F(f, X): #Значение функции f в точке X 
+def F(f, X): #Р—РЅР°С‡РµРЅРёРµ С„СѓРЅРєС†РёРё f РІ С‚РѕС‡РєРµ X 
     return f.evalf(subs = {x : X })
-def F_1(f,X): #Возврашает производную в точке по формуле численного дифференцирования 
+def F_1(f,X): #Р’РѕР·РІСЂР°С€Р°РµС‚ РїСЂРѕРёР·РІРѕРґРЅСѓСЋ РІ С‚РѕС‡РєРµ РїРѕ С„РѕСЂРјСѓР»Рµ С‡РёСЃР»РµРЅРЅРѕРіРѕ РґРёС„С„РµСЂРµРЅС†РёСЂРѕРІР°РЅРёСЏ 
     if(X==0):
         return ((-3*f[X].value+4*f[X+1].value-f[X+2].value))/2/h
     elif(X == m - 1 ): 
         return ((3*f[X].value-4*f[X-1].value+f[X-2].value))/2/h
     return ((f[X+1].value-f[X-1].value)/(2*h))
 def F_2(f,X):
-   return (f[X+1].value - 2*f[X].value+ f[X-1].value)/(h**2)#Возвращает вторую производную 
+   return (f[X+1].value - 2*f[X].value+ f[X-1].value)/(h**2)#Р’РѕР·РІСЂР°С‰Р°РµС‚ РІС‚РѕСЂСѓСЋ РїСЂРѕРёР·РІРѕРґРЅСѓСЋ 
 #def numeral_diff(f):
 #    return (f(a+h)-f(a-h))/2*h 
 class cell (object):
@@ -32,15 +32,15 @@ class cell (object):
         elif(self.diff2 == None ):
             print(f"{self.number : < 25} { self.value : < 25}{self.diff1 : ^25}{abs(self.real_diff1 - self.diff1) : ^25} ")
         else : 
-            print(f"{self.number : <25}{self.value : ^25}{self.diff1 : ^25}{abs(self.real_diff1 - self.diff1) : ^25}{self.diff2 : ^25}{abs(self.real_diff2 - self.diff2)}") #Структура, которая хранит точку и значение в точке
+            print(f"{self.number : <25}{self.value : ^25}{self.diff1 : ^25}{abs(self.real_diff1 - self.diff1) : ^25}{self.diff2 : ^25}{abs(self.real_diff2 - self.diff2)}") #РЎС‚СЂСѓРєС‚СѓСЂР°, РєРѕС‚РѕСЂР°СЏ С…СЂР°РЅРёС‚ С‚РѕС‡РєСѓ Рё Р·РЅР°С‡РµРЅРёРµ РІ С‚РѕС‡РєРµ
 List = []
 
 
 #{self.value : <25}{self.diff1: <25}{self.diff2: <25}{self.real_diff1: <25}
 
-a = 0 # float(input("Точка, где вычисляется производная\n"))
-m =  10 #int(input("Число отрезков(число значений в таблице будет +1)\n"))
-h = 0.1# float(input("Шаг таблицы ")) 
+a = 0 # float(input("РўРѕС‡РєР°, РіРґРµ РІС‹С‡РёСЃР»СЏРµС‚СЃСЏ РїСЂРѕРёР·РІРѕРґРЅР°СЏ\n"))
+m =  10 #int(input("Р§РёСЃР»Рѕ РѕС‚СЂРµР·РєРѕРІ(С‡РёСЃР»Рѕ Р·РЅР°С‡РµРЅРёР№ РІ С‚Р°Р±Р»РёС†Рµ Р±СѓРґРµС‚ +1)\n"))
+h = 0.1# float(input("РЁР°Рі С‚Р°Р±Р»РёС†С‹ ")) 
 #/*for i in range(0,m):
 #    if i == 0 or i == m - 1 :
 #        List.append(cell(a+i*h,F(f,a+i*h),F_1_edge(List,i),diff2 = None,real_diff1 = f.diff(x).evalf(subs ={x : a+i*h}),real_diff2 = None))
@@ -61,8 +61,8 @@ for i in range(1, m-1):
     List[i].real_diff2 = f.diff(x).diff(x).evalf(subs ={x : a+i*h})
 for i in List: 
     i.print() 
-    print("Относительная величина невязки f' = ", (i.real_diff1 - i.diff1)/i.real_diff1)
+    print("РћС‚РЅРѕСЃРёС‚РµР»СЊРЅР°СЏ РІРµР»РёС‡РёРЅР° РЅРµРІСЏР·РєРё f' = ", (i.real_diff1 - i.diff1)/i.real_diff1)
     if(i.real_diff2 != None ):
-        print("Относительная величина невязки f'' = ", (i.real_diff2 - i.diff2)/i.real_diff2)
+        print("РћС‚РЅРѕСЃРёС‚РµР»СЊРЅР°СЏ РІРµР»РёС‡РёРЅР° РЅРµРІСЏР·РєРё f'' = ", (i.real_diff2 - i.diff2)/i.real_diff2)
     print("\n ")
 
