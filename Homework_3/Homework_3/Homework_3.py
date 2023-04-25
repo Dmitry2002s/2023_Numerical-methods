@@ -1,5 +1,4 @@
-﻿# -*- coding: cp1251 -*-
-
+﻿
 from cmath import inf
 import math 
 from math import exp
@@ -24,7 +23,6 @@ class interval(object):
 def function(x):
     return 1 - math.exp(-x) + x**2  #1 - math.exp(-x) + x**2 #Вычисление значения функции 
 f = 1 - sympy.exp(-x) + x**2 
-
 Table = list();  #Таблица со значениями функции 
 
 a = -7 # float(input("Введите левую границу \n")) 
@@ -37,6 +35,7 @@ for i in range(0,m):
 for i in Table: 
         i.print() #Отображаем нашу табличку 
 
+print("\nИнтерполируемая функция f = " , f, '\n')
 #Найдём участки строгой монотонности функции : 
 
 f_diff = f.diff(x)  #Посчитали производную функции 
@@ -92,7 +91,7 @@ while (choise == 1) :
     E = float(input("Введите Е-допуск для значений\n")) #()) 
     print("Введите точку интерполирования, приблизительный аргумент которой хотите узнать ") 
     x = float(input())
-    print("Введите желаемую степень интерполяционного многочлена") 
+    print("Введите желаемую степень интерполяционного многочлена, не выше ", m) 
     n = int(input()) 
         
     for m in monotony: 
@@ -163,10 +162,7 @@ while (choise == 1) :
 
         print("Значение интерполяционного многочлена в форме лагранджа в точке ",x, " = " , result_L1) 
         print("Разница интерполяционного многочлена и функции  = ", abs(function(result_L1)-x), "\n")
-    
-    
-
-
+   
     print("_______________________________\n2ой метод решения задачи")
     result_L = 0 
     ITable = []
@@ -203,31 +199,14 @@ while (choise == 1) :
                 if(x-Table[Z].number > 0 ):
                     if(Z+p+1<m):
                         if(Table[Z+p+1].number>monotony[V].X1 and Table[Z+p+1].number<monotony[V].X2 ):
-                            ITable.append(Table[Z+p+1])
-                             
+                            ITable.append(Table[Z+p+1])    
                 else:
                     if(Z-p-1>=m):
                         if(Table[Z+p-1].number>monotony[V].X1 and Table[Z+p-1].number<monotony[V].X2 ):
                             ITable.append(Table[Z-p-1])
-
                 break
             p+=1
             
-            #if(len(ITable) == VAX):
-            #    VAX = len(ITable) 
-            #    CAX += 1 
-            #    if CAX == 2: 
-            #        AAAP = 1 
-            #        break 
-            #else:
-            #    CAX = 0 
-            #if(AAAP==0):
-            #    break 
-
-
-    #print("Отсортированная по возрастанию расстояния от узла интерполяции Таблица узлов, по которым выполняем интерполирование")
-    #for i in ITable :
-    #    i.print() 
     n = len(ITable) 
     for k in range (0, n) :
             w = 1 # Числитель в интерполяционной формуле лагранджа 
@@ -243,7 +222,7 @@ while (choise == 1) :
         
     A = a
     B = b
-    N = 1000 #Количество отрезков, котоыре проверяем на наличие корня нечётной кратности 
+    N = 200 #Количество отрезков, котоыре проверяем на наличие корня нечётной кратности 
     counter = 0 #Количество корней нечетной кратности 
     List = [] 
     H = (B-A)/N 
@@ -270,7 +249,7 @@ while (choise == 1) :
             C = B-(B-A)*CVA.evalf(subs = {v:B})/(CVA.evalf(subs = {v:B}) - CVA.evalf(subs = {v:A}))
             A = B 
             B = C 
-            kk = 1 
+            kk = 1
         print("Приближенный корень  -" , C)
         print("Абсолютная величина невязки -", abs(function(C) - x) , "\n") #Метод секущих
     print("Хотите проинтерполировать другую точку ? \n 0 - нет, 1 - да")

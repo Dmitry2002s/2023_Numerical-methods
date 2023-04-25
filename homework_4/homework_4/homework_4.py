@@ -1,10 +1,11 @@
-﻿# -*- coding: cp1251 -*-
-
+﻿
 import sympy
 from sympy import sin, cos ,exp, integrate,sympify
 from sympy.abc import x
-def function(f,y):# Значение функции в точке Sx:
+import math 
+def function(f,y):# Значение функции в точке x:
     return f.evalf(subs = {x : y})
+
 def MAX_f(f ,a,b): 
     h = 1/100
     i = 0
@@ -19,7 +20,6 @@ def f_diff(f,n):
         f = f.diff(x)
         n-=1 
     return f 
-    
 def integrate_KF(list_f): 
     for f in list_f :  
             F = integrate(f,x) 
@@ -85,7 +85,7 @@ def SKF_Simpson(f,m, a ,b ):
     print("   Теор.погр. = ", 1/2880*(b-a)*h**3*MAX_f(f_diff(f,3),a,b))
     return result 
 def integrate_SKF(list_f):
-    m = int(input("Введите число промежутков деления "))
+    m = l * int(input("Введите число промежутков деления "))
     list_SKF = [SKF_Left_triangle ,SKF_Right_triangle,SKF_Middle_triangle,SKF_Trapezoid,SKF_Simpson]
     for f in list_f :  
         F = integrate(f,x) 
@@ -94,25 +94,19 @@ def integrate_SKF(list_f):
         print("_______________________________________") 
         for k in list_SKF: 
             k(f,m ,a,b) 
-        
-
-#a,b = input().split() 
-#a,b = int(a), int(b)
-
+l = 1 
 a,b = 0,2  
 
 list_f = [x**0, x**1 ,x**2, x**3, x**4, x**3+sin(x)]
 i = 1
-'''while(i != '0'):
-    print("Введите функцию для интегрирований(по x) , по окончании вывода введите 0")
-    i = input()
-    if(i != '0') :
-        list_f.append(sympify(i)) '''
 choise = 0 
 while(choise != '0') :
+    ''' Заготовка для вычисления погрешности по принципу рунге''' 
+    
     i =  1 
     print("Меню  \n 1 - КФ \n 2 - СКФ \n 3 - дополнить список интегрируемых функций ")
     print(" 4 - отобразить список интегрируемых функций и пределы интегрирования   \n 5 - изменить пределы интегрирования \n 0 - завершить работу программмы")
+    print(" 6 - оценка погрешности по принципу Рунге ")
     choise = int(input())
     if choise == 0 : 
         break 
@@ -133,5 +127,22 @@ while(choise != '0') :
         a = float(input("Введите левый предел\n"))
         b = float(input("Введите правый предел\n"))
         print("Готово, пределы изменены")
+    elif choise == 6 : 
+        m = int(input("Введите количество делений промежутка"))
+        l = int(input("Введите l(уменьшаем длину промежутка в l раз)"))
+        print(list_f)
+        i = int(input("Введите номер функции"))
+        i = list_f[i] 
+        print("Оценка погрешности по принципу рунге для левого треугольника" , math.exp(1)/(math.exp(1)-1)*(SKF_Left_triangle(i,m*l,a,b)-SKF_Left_triangle(i,m,a,b)))
+        print("\n")
+        print("Оценка погрешности по принципу рунге для правого треугольника" , math.exp(1)/(math.exp(1)-1)*(SKF_Right_triangle(i,m*l,a,b)-SKF_Right_triangle(i,m,a,b)))
+        print("\n")
+        print("Оценка погрешности по принципу рунге для среднего треугольника" , math.exp(1)/(math.exp(1)-1)*(SKF_Middle_triangle(i,m*l,a,b)-SKF_Middle_triangle(i,m,a,b)))
+        print("\n")
+        print("Оценка погрешности по принципу рунге для трапеции" , math.exp(1)/(math.exp(1)-1)*(SKF_Trapezoid(i,m*l,a,b)-SKF_Trapezoid(i,m,a,b)))
+        print("\n")
+        print("Оценка погрешности по принципу рунге для симпсона" , math.exp(1)/(math.exp(1)-1)*(SKF_Simpson(i,m*l,a,b)-SKF_Simpson(i,m,a,b)))
+
+
 
 
