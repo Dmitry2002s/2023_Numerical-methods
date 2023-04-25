@@ -3,7 +3,7 @@
 import sympy
 from sympy import sin, cos ,exp, integrate,sympify
 from sympy.abc import x
-def function(f,y):# Значение функции в точке x:
+def function(f,y):# Значение функции в точке Sx:
     return f.evalf(subs = {x : y})
 def MAX_f(f ,a,b): 
     h = 1/100
