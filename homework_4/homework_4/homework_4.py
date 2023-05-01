@@ -133,15 +133,17 @@ while(choise != '0') :
         print(list_f)
         i = int(input("Введите номер функции"))
         i = list_f[i] 
+        F = integrate(i,x)
+        print("Точное значение интеграла  " , function(F,b) - function(F,a))
         print("Оценка погрешности по принципу рунге для левого треугольника" , math.exp(1)/(math.exp(1)-1)*(SKF_Left_triangle(i,m*l,a,b)-SKF_Left_triangle(i,m,a,b)))
         print("\n")
         print("Оценка погрешности по принципу рунге для правого треугольника" , math.exp(1)/(math.exp(1)-1)*(SKF_Right_triangle(i,m*l,a,b)-SKF_Right_triangle(i,m,a,b)))
         print("\n")
-        print("Оценка погрешности по принципу рунге для среднего треугольника" , math.exp(1)/(math.exp(1)-1)*(SKF_Middle_triangle(i,m*l,a,b)-SKF_Middle_triangle(i,m,a,b)))
+        print("Оценка погрешности по принципу рунге для среднего треугольника" , math.exp(2)/(math.exp(2)-1)*(SKF_Middle_triangle(i,m*l,a,b)-SKF_Middle_triangle(i,m,a,b)))
         print("\n")
-        print("Оценка погрешности по принципу рунге для трапеции" , math.exp(1)/(math.exp(1)-1)*(SKF_Trapezoid(i,m*l,a,b)-SKF_Trapezoid(i,m,a,b)))
+        print("Оценка погрешности по принципу рунге для трапеции" , math.exp(2)/(math.exp(2)-1)*(SKF_Trapezoid(i,m*l,a,b)-SKF_Trapezoid(i,m,a,b)))
         print("\n")
-        print("Оценка погрешности по принципу рунге для симпсона" , math.exp(1)/(math.exp(1)-1)*(SKF_Simpson(i,m*l,a,b)-SKF_Simpson(i,m,a,b)))
+        print("Оценка погрешности по принципу рунге для симпсона" , math.exp(4)/(math.exp(4)-1)*(SKF_Simpson(i,m*l,a,b)-SKF_Simpson(i,m,a,b)))
 
 
 
