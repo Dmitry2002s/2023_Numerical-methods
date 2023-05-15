@@ -107,8 +107,12 @@ while(choise != '0') :
     print("Меню  \n 1 - КФ \n 2 - СКФ \n 3 - дополнить список интегрируемых функций ")
     print(" 4 - отобразить список интегрируемых функций и пределы интегрирования   \n 5 - изменить пределы интегрирования \n 0 - завершить работу программмы")
     print(" 6 - оценка погрешности по принципу Рунге ")
+    print("-1 - отчистить список функций ")
     choise = int(input())
-    if choise == 0 : 
+    if choise == -1 : 
+        list_f.clear() 
+        print("Список функций отчищен!")
+    elif choise == 0 : 
         break 
     elif choise == 1 :  
         integrate_KF(list_f)
@@ -131,20 +135,34 @@ while(choise != '0') :
         m = int(input("Введите количество делений промежутка"))
         l = int(input("Введите l(уменьшаем длину промежутка в l раз)"))
         print(list_f)
-        i = int(input("Введите номер функции"))
+        print("Введите номер функции (от 0 до ", len(list_f) - 1 , ")")
+        while(True): 
+            i = int(input())
+            if i in (0 , len(list_f) - 1 ):
+                break 
+            else : 
+                print("Ввод некорректен, введите повторно")
         i = list_f[i] 
         F = integrate(i,x)
         print("Точное значение интеграла  " , function(F,b) - function(F,a))
-        print("Оценка погрешности по принципу рунге для левого треугольника" , math.exp(1)/(math.exp(1)-1)*(SKF_Left_triangle(i,m*l,a,b)-SKF_Left_triangle(i,m,a,b)))
-        print("\n")
-        print("Оценка погрешности по принципу рунге для правого треугольника" , math.exp(1)/(math.exp(1)-1)*(SKF_Right_triangle(i,m*l,a,b)-SKF_Right_triangle(i,m,a,b)))
-        print("\n")
-        print("Оценка погрешности по принципу рунге для среднего треугольника" , math.exp(2)/(math.exp(2)-1)*(SKF_Middle_triangle(i,m*l,a,b)-SKF_Middle_triangle(i,m,a,b)))
-        print("\n")
-        print("Оценка погрешности по принципу рунге для трапеции" , math.exp(2)/(math.exp(2)-1)*(SKF_Trapezoid(i,m*l,a,b)-SKF_Trapezoid(i,m,a,b)))
-        print("\n")
-        print("Оценка погрешности по принципу рунге для симпсона" , math.exp(4)/(math.exp(4)-1)*(SKF_Simpson(i,m*l,a,b)-SKF_Simpson(i,m,a,b)))
+        print("Оценка погрешности по принципу рунге для левого треугольника" , 1/(l**1-1)*(l**1*SKF_Left_triangle(i,m*l,a,b)-SKF_Left_triangle(i,m,a,b)))
+        print("Погрешность = " , (function(F,b) - function(F,a)) - 1/(l**1- 1)*(l**1*SKF_Left_triangle(i,m*l,a,b)-SKF_Left_triangle(i,m,a,b)))
 
+        print("\n")
+        print("Оценка погрешности по принципу рунге для правого треугольника" , 1/(l**1- 1)*(l**1*SKF_Right_triangle(i,m*l,a,b)-SKF_Right_triangle(i,m,a,b)))
+        print("Погрешность = " , (function(F,b) - function(F,a)) - 1/(l**1- 1)*(l**1*SKF_Right_triangle(i,m*l,a,b)-SKF_Right_triangle(i,m,a,b)))
+
+        print("\n")
+        print("Оценка погрешности по принципу рунге для среднего треугольника" , 1/l**2*((l**2-1)*SKF_Middle_triangle(i,m*l,a,b)-SKF_Middle_triangle(i,m,a,b)))
+        print("Погрешность = " , (function(F,b) - function(F,a)) - 1/(l**2-1)*((l**2)*SKF_Middle_triangle(i,m*l,a,b)-SKF_Middle_triangle(i,m,a,b)))
+
+        print("\n")
+        print("Оценка погрешности по принципу рунге для трапеции" , 1/(l**2-1)*(l**2*SKF_Trapezoid(i,m*l,a,b)-SKF_Trapezoid(i,m,a,b)))
+        print("Погрешность = " , (function(F,b) - function(F,a)) - 1/(l**2-1)*(l**2*SKF_Trapezoid(i,m*l,a,b)-SKF_Trapezoid(i,m,a,b)))
+
+        print("\n")
+        print("уточненное значение по принципу рунге для симпсона" , 1/(l**4-1)*(l**4*SKF_Simpson(i,m*l,a,b)-SKF_Simpson(i,m,a,b)))
+        print("Погрешность = " , (function(F,b) - function(F,a)) - 1/(l**4-1)*(l**4*SKF_Simpson(i,m*l,a,b)-SKF_Simpson(i,m,a,b)))
 
 
 

@@ -9,6 +9,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Алгоритмы на т�
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Bertran Postulate", "Bertran Postulate\Bertran Postulate.pyproj", "{59D5415C-6868-4DA8-88EC-F86F7E3AACDA}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Разложение_на_простые_множители", "Разложение_на_простые_множители\Разложение_на_простые_множители.pyproj", "{526B4088-D817-48C2-8572-05559E40A62A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{4E507A48-3827-4689-83E6-B349DA760370}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59D5415C-6868-4DA8-88EC-F86F7E3AACDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{59D5415C-6868-4DA8-88EC-F86F7E3AACDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{526B4088-D817-48C2-8572-05559E40A62A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{526B4088-D817-48C2-8572-05559E40A62A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
